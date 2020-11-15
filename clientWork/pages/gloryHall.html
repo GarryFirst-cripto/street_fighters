@@ -1,0 +1,103 @@
+﻿<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+    <meta charset="utf-8"/>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon">
+    <title>Street Fighters</title>
+    <link rel="stylesheet" href="styles/commonStyles.css">
+</head>
+<body>
+    <img class="background" src="img/gloryHall.jpg" alt="gloryHall_page">
+    <label class="toplabel" >Hall of Glory</label>
+    <div class="tablbox">
+        <table id="tabl" >
+            <tr>
+                <td class="tHead"> Fight Data </td> <td class="tHead"> Gamer </td> <td class="tHead"> Winner </td> <td class="tHead"> Loser </td><td class="tHead"> Fight statistic </td>
+            </tr>
+        </table>
+    </div>
+    <div class="buttbox">
+        <button id="save" class="button" onclick="doGamersList()">Gamers List</button>
+        <button id="save" class="button" onclick="doFightersList()">Firghters List</button>
+        <button id="save" class="button" onclick="doNewButtle()">To Buttle</button>
+    </div>
+
+    <script>
+        function doGamersList() {
+            document.location.href = "gamersList.html";
+        }
+
+        function doFightersList() {
+            document.location.href = "fightersList.html";
+        }
+
+        function doNewButtle() {
+            document.location.href = "/clientWork/buttle/index.html";
+        }
+
+        let tabl;
+
+        function createTableRow(tabData,tabClass) {
+            tabRow = document.createElement("tr");
+            for (let i=0; i<tabData.length; i++)
+                tabRow.innerHTML += '<td class="'+tabClass[i]+'">'+tabData[i]+'</td>';
+            return tabRow
+        }
+
+        function formatData(data){
+            let datadata = new Date(data)
+            return datadata.getDate("D")+"."+datadata.getMonth("D")+"."+datadata.getFullYear();
+        }
+
+        function request(action) {
+            let req = new XMLHttpRequest();
+            req.open("GET", action, true);   
+            req.setRequestHeader("Content-Type", "application/json");            
+            req.send();
+            return new Promise((resolve,reject) => {
+                req.addEventListener("load", function () {
+                    if (req.status == 200) resolve(req.response)
+                    else reject(req.response);
+                }); 
+            });
+        }
+        
+        function updateList() {
+            while (tabl.children.length > 1) tabl.removeChild(tabl.lastChild);
+            let reqs = [request("/api/fights"),request("/api/users"),request("/api/fighters")];
+            Promise.all(reqs)
+            .then(responses => {
+                fights = JSON.parse(responses[0]).data;
+                gamers = JSON.parse(responses[1]).data;
+                fighters = JSON.parse(responses[2]).data;
+                for (let i=0; i < fights.length; i++) {
+                    let userId = fights[i].log[0];
+                    let gamer;
+                    let winner;
+                    let loser;
+                    for (let j=0; j < gamers.length; j++)
+                        if (gamers[j].id == userId) {
+                            gamer = gamers[j].firstName+" "+gamers[j].lastName;
+                            break;
+                        }
+                    for (let j=0; j < fighters.length; j++) {
+                        if (fighters[j].id == fights[i].fighter1) winner = fighters[j].name;
+                        if (fighters[j].id == fights[i].fighter2) loser = fighters[j].name;
+                    }    
+                    let statistic = "winner: push - "+fights[i].log[2]+", health - "+fights[i].log[4]+", ...  loser: push - "+fights[i].log[3]+", health - "+fights[i].log[5];
+                    let tabRow = createTableRow([formatData(fights[i].log[1]),gamer,winner,loser,statistic],["tRowL","tRowL","tRowC","tRowC","tRowCC"]);
+                    tabl.appendChild(tabRow);
+                }
+            })
+            .catch(alert);
+        }
+
+        window.onload = function() {
+            tabl = document.getElementById("tabl");
+            updateList();
+        }
+
+    </script>
+</body>
+</html>
+
