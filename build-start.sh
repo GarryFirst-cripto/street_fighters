@@ -1,7 +1,7 @@
 #!/bin/bash
-cd client 
+cd client/buttle 
 npm install
 npm run build
-cd ..
+cd ../..
 npm install
 npm start

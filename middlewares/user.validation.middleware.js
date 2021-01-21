@@ -1,24 +1,6 @@
 const { user } = require('../models/user');
 const { UserRepository } = require('../repositories/userRepository');
-
-function testFieldsList(reqList) {
-    let errText = "";
-    let fieldsUser = Object.keys(user);
-    let fieldsBody = Object.keys(reqList);
-    let errTextA = "";
-    for (let i=1; i < fieldsUser.length; i++)
-        if (fieldsBody.indexOf(fieldsUser[i]) < 0) errTextA += fieldsUser[i]+" ";
-    if (errTextA != "") errText = "No fields in request : "+errTextA+"\n";
-    errTextA = "";
-    let errTextB = "";
-    for (let i=0; i < fieldsBody.length; i++) {
-        if (fieldsUser.indexOf(fieldsBody[i]) < 0) errTextA += fieldsBody[i]+" ";
-        if (reqList[fieldsBody[i]] == "") errTextB += "\n --- "+ fieldsBody[i];
-    }
-    if (errTextA != "") errText += "Extra fields in request : "+errTextA+"\n";
-    if (errTextB != "") errText += "Empty fields in request : "+errTextB+"\n";
-    return errText;
-}
+const { testFieldsList } = require('./helper/fieldListHelper');
 
 function testPhoneNumber(phone) {
     let errText = "";
@@ -73,7 +55,7 @@ function testPhoneNumber(phone) {
 const createUserValid = (req, res, next) => {
     try {
         if (req.body) {
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(user, req.body);
             if (errText != "") {
                 res.data = {
                       error: true,
@@ -110,18 +92,18 @@ const updateUserValid = (req, res, next) => {
     try {
         if (req.body) {
             let id = req.params.id;
-            let user = UserRepository.getOne((item)=>{ return (item.id == id) });
-            if (!user) {
+            let updUser = UserRepository.getOne((item)=>{ return (item.id == id) });
+            if (!updUser) {
                 res.data = { error: true, message: "No such user found !", status: 400 };
                 next();                
             }
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(user, req.body);
             if (errText != "") {
                 res.data = { error: true, message: errText, status: 400 };
                 next();
             }
             let client = UserRepository.getOne((item)=>{ return ((item.firstName == req.body.firstName)&&(item.lastName == req.body.lastName)) });
-            if ((client)&&(client.id != id)) errText = "Such user already regictred : "+req.body.firstName+" "+req.body.lastName;
+            if ((client)&&(client.id != id)) errText = "Such user already registred : "+req.body.firstName+" "+req.body.lastName;
             if (errText != "") {
                 res.data = { error: true, message: errText, status: 400 };
                 next();

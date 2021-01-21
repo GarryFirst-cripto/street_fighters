@@ -6,7 +6,7 @@ class DetailService {
     get(req, res, next) {
         try {
             let details = DetailRepository.getAll();
-            res.data = { error:false, data: details, status: 200 };
+            res.data = details;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -18,7 +18,7 @@ class DetailService {
         try {
             let idd = req.params.id;
             let detail = DetailRepository.getOne((item)=>{ return (item.id == idd) });
-            if (detail) res.data = { error: false, data: detail, status:200 }
+            if (detail) res.data = detail
             else res.data = { error:false, data:{ id:idd, source:"" }, status: 200 };
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
@@ -29,9 +29,9 @@ class DetailService {
 
     delete(req, res, next) {
         try {
-            let id = res.data.userid;
+            let id = req.params.id;
             let detail = DetailRepository.delete(id);
-            res.data = { error: false, data: detail, status:200 };
+            res.data = detail;
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -42,7 +42,7 @@ class DetailService {
     post(req, res, next) {
         try {
             let newDetail = DetailRepository.create(req.body);
-            res.data = { error:false, data: newDetail, status: 200 };
+            res.data = newDetail;
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
         } finally {
@@ -54,7 +54,7 @@ class DetailService {
         try {
             let idd = req.params.id;
             let updDetail = DetailRepository.update(idd, req.body);
-            res.data = { error:false, data: updDetail, status: 200 };
+            res.data = updDetail;
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
         } finally {

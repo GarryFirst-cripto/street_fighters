@@ -29,40 +29,14 @@
       "createdAt": "2020-05-16T07:36:06.036Z"
     },
     {
-      "email": "df@dg.sd",
-      "password": "ssssss",
-      "firstName": "garry1",
-      "lastName": "garry1",
-      "phoneNumber": "5252525888",
-      "id": "1def3850-9f60-46db-acbe-a4ec96869cf3",
-      "createdAt": "2020-05-16T07:38:48.916Z"
-    },
-    {
-      "email": "sd@df.fd",
-      "password": "ssssss",
-      "firstName": "garry1",
-      "lastName": "ss",
-      "phoneNumber": "2582582589",
-      "id": "32940669-a61d-494d-84a2-4453a1d51660",
-      "createdAt": "2020-05-16T07:41:21.997Z"
-    },
-    {
-      "email": "DFDG@DF.DF",
-      "password": "wwwww",
-      "firstName": "dsgf",
-      "lastName": "kdjghf",
-      "phoneNumber": "1234567890",
+      "email": "john_doe@mail.mail",
+      "password": "333333",
+      "firstName": "John",
+      "lastName": "Doe",
+      "phoneNumber": "+38(066)0000000",
       "id": "de5f9a70-3403-4dd9-b359-b6f872c3ce62",
-      "createdAt": "2020-05-16T07:43:46.284Z"
-    },
-    {
-      "email": "sfds@sd.dgf",
-      "password": "ddddd",
-      "firstName": "ssss",
-      "lastName": "aaaa",
-      "phoneNumber": "0123456789",
-      "id": "d5b56aae-6aad-4f2d-87c4-9f0799f747d5",
-      "createdAt": "2020-05-16T07:45:07.235Z"
+      "createdAt": "2020-05-16T07:43:46.284Z",
+      "updatedAt": "2021-01-21T15:31:23.306Z"
     },
     {
       "firstName": "Garry",
@@ -134,85 +108,6 @@
   ],
   "fights": [
     {
-      "id": "1",
-      "fighter1": "1",
-      "fighter2": "2",
-      "log": [
-        "3b164ca6-ac8f-4eb8-bef3-b9b62445bbcd",
-        "2020-05-10T08:12:06.515Z",
-        15,
-        9,
-        34,
-        0
-      ]
-    },
-    {
-      "id": "2",
-      "fighter1": "1",
-      "fighter2": "3",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-11T08:12:06.515Z",
-        15,
-        9,
-        34,
-        0
-      ]
-    },
-    {
-      "id": "3",
-      "fighter1": "2",
-      "fighter2": "3",
-      "log": [
-        "3b164ca6-ac8f-4eb8-bef3-b9b62445bbcd",
-        "2020-05-12T08:12:06.515Z",
-        15,
-        9,
-        34,
-        0
-      ]
-    },
-    {
-      "id": "4",
-      "fighter1": "3",
-      "fighter2": "1",
-      "log": [
-        "3b164ca6-ac8f-4eb8-bef3-b9b62445bbcd",
-        "2020-05-12T09:12:06.515Z",
-        15,
-        9,
-        34,
-        0
-      ]
-    },
-    {
-      "id": "5",
-      "fighter1": "1",
-      "fighter2": "2",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-12T09:12:06.515Z",
-        15,
-        9,
-        34,
-        0
-      ]
-    },
-    {
-      "fighter1": "1",
-      "fighter2": "2",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-15T11:10:52.451Z",
-        12,
-        9,
-        43,
-        -1
-      ],
-      "id": "99c9160d-8ab8-4b8e-9b2d-c04739248632",
-      "createdAt": "2020-05-15T11:10:52.500Z"
-    },
-    {
       "fighter1": "3e31ecff-84f9-4f3f-99ca-a2889ec32d2a",
       "fighter2": "3e31ecff-84f9-4f3f-99ca-a2889ec32d2a",
       "log": [
@@ -230,7 +125,7 @@
       "fighter1": "cb7af1b1-63a0-4ff7-86c6-707b877fe207",
       "fighter2": "e251daf6-9954-4938-8111-6c35fceb9240",
       "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
+        "3b164ca6-ac8f-4eb8-bef3-b9b62445bbcd",
         "2020-05-16T16:41:15.245Z",
         27,
         30,
@@ -258,7 +153,7 @@
       "fighter1": "a3c5a4ba-3924-4c75-b42f-e4b9c99097de",
       "fighter2": "cb7af1b1-63a0-4ff7-86c6-707b877fe207",
       "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
+        "de5f9a70-3403-4dd9-b359-b6f872c3ce62",
         "2020-05-16T16:49:33.348Z",
         27,
         23,
@@ -272,77 +167,7 @@
       "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
       "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
       "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-16T17:18:02.935Z",
-        10,
-        13,
-        49,
-        -2
-      ],
-      "id": "933cc2a1-5a54-4475-aa33-74807bff3ee8",
-      "createdAt": "2020-05-16T17:18:02.956Z"
-    },
-    {
-      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
-      "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-16T17:18:02.935Z",
-        10,
-        13,
-        49,
-        -2
-      ],
-      "id": "933cc2a1-5a54-4475-aa33-74807bff3ee8",
-      "createdAt": "2020-05-16T17:18:02.956Z"
-    },
-    {
-      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
-      "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-16T17:18:02.935Z",
-        10,
-        13,
-        49,
-        -2
-      ],
-      "id": "933cc2a1-5a54-4475-aa33-74807bff3ee8",
-      "createdAt": "2020-05-16T17:18:02.956Z"
-    },
-    {
-      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
-      "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-16T17:18:02.935Z",
-        10,
-        13,
-        49,
-        -2
-      ],
-      "id": "933cc2a1-5a54-4475-aa33-74807bff3ee8",
-      "createdAt": "2020-05-16T17:18:02.956Z"
-    },
-    {
-      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
-      "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
-        "2020-05-16T17:18:02.935Z",
-        10,
-        13,
-        49,
-        -2
-      ],
-      "id": "933cc2a1-5a54-4475-aa33-74807bff3ee8",
-      "createdAt": "2020-05-16T17:18:02.956Z"
-    },
-    {
-      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
-      "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
-      "log": [
-        "0aa5bbc4-1a9a-428f-a989-2e434605603c",
+        "de5f9a70-3403-4dd9-b359-b6f872c3ce62",
         "2020-05-16T17:18:02.935Z",
         10,
         13,
@@ -365,6 +190,62 @@
       ],
       "id": "06990f31-0f20-4860-9992-eed79aaf3ad4",
       "createdAt": "2020-05-16T17:18:45.517Z"
+    },
+    {
+      "fighter1": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
+      "fighter2": "6bd98c72-26a1-4aea-8fcc-28c6705d7bb2",
+      "log": [
+        "a64ff31a-dd7c-4e23-9fdc-ea11c7dd6a13",
+        "2021-01-10T16:49:33.348Z",
+        29,
+        21,
+        11,
+        -1
+      ],
+      "id": "c2edc27b-dc78-47e2-ae66-5deb2329169d",
+      "createdAt": "2021-01-21T15:40:30.230Z"
+    },
+    {
+      "fighter1": "e251daf6-9954-4938-8111-6c35fceb9240",
+      "fighter2": "6bd98c72-26a1-4aea-8fcc-28c6705d7bb2",
+      "log": [
+        "a64ff31a-dd7c-4e23-9fdc-ea11c7dd6a13",
+        "2021-01-10T16:49:33.348Z",
+        31,
+        25,
+        14,
+        -1
+      ],
+      "id": "2ebe068f-2327-4160-8051-fbbc80a916ef",
+      "createdAt": "2021-01-21T15:41:34.307Z"
+    },
+    {
+      "fighter1": "a3c5a4ba-3924-4c75-b42f-e4b9c99097de",
+      "fighter2": "e251daf6-9954-4938-8111-6c35fceb9240",
+      "log": [
+        "051dd4a6-90dc-4e55-bdd6-c639b2ca874d",
+        "2021-01-21T15:44:03.971Z",
+        21,
+        23,
+        29,
+        0
+      ],
+      "id": "958882a9-7f78-4dce-8c7a-3a9fdde5d9e9",
+      "createdAt": "2021-01-21T15:44:03.981Z"
+    },
+    {
+      "fighter1": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
+      "fighter2": "cb7af1b1-63a0-4ff7-86c6-707b877fe207",
+      "log": [
+        "051dd4a6-90dc-4e55-bdd6-c639b2ca874d",
+        "2021-01-21T15:45:02.045Z",
+        15,
+        15,
+        25,
+        -1
+      ],
+      "id": "ecca9994-46f4-4d2e-aed4-239f63fab134",
+      "createdAt": "2021-01-21T15:45:02.053Z"
     }
   ],
   "details": [

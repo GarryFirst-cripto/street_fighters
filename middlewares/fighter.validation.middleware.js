@@ -1,24 +1,7 @@
 const { fighter } = require('../models/fighter');
 const { FighterRepository } = require('../repositories/fighterRepository');
+const { testFieldsList } = require('./helper/fieldListHelper');
 
-function testFieldsList(reqList) {
-    let errText = "";
-    let fieldsUser = Object.keys(fighter);
-    let fieldsBody = Object.keys(reqList);
-    let errTextA = "";
-    for (let i=1; i < fieldsUser.length; i++)
-        if (fieldsBody.indexOf(fieldsUser[i]) < 0) errTextA += fieldsUser[i]+" ";
-    if (errTextA != "") errText = "No fields in request : "+errTextA+"\n";
-    errTextA = "";
-    let errTextB = "";
-    for (let i=0; i < fieldsBody.length; i++) {
-        if (fieldsUser.indexOf(fieldsBody[i]) < 0) errTextA += fieldsBody[i]+" ";
-        if (reqList[fieldsBody[i]] == "") errTextB += "\n --- "+ fieldsBody[i];
-    }
-    if (errTextA != "") errText += "Extra fields in request : "+errTextA+"\n";
-    if (errTextB != "") errText += "Empty fields in request : "+errTextB+"\n";
-    return errText;
-}
 function testNumberValue(value,minn,maxx,nm) {
     let errText = "";
     let mode = false;
@@ -56,13 +39,13 @@ const createFighterValid = (req, res, next) => {
     // TODO: Implement validatior for fighter entity during creation
     try {
         if (req.body) {
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(fighter, req.body);
             if (errText != "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();
             }
-            let fighter = FighterRepository.getOne((item)=>{ return (item.name == req.body.name) });
-            if (fighter) errText = "\n this fighter is already registered : "+req.body.name
+            let newFighter = FighterRepository.getOne((item)=>{ return (item.name == req.body.name) });
+            if (newFighter) errText = "\n this fighter is already registered : "+req.body.name
             else {
                 errText = testNumberValue(req.body.health,10,100,"health");
                 errText += testNumberValue(req.body.power,1,10,"power");
@@ -83,12 +66,12 @@ const updateFighterValid = (req, res, next) => {
     try {
         if (req.body) {
             let id = req.params.id;
-            let fighter = FighterRepository.getOne((item)=>{ return (item.id == id) });
-            if (!fighter) {
-                res.data = { error: true, message: "No such fighter found !", status: 400 };
+            let updFighter = FighterRepository.getOne((item)=>{ return (item.id == id) });
+            if (!updFighter) {
+                res.data = { error: true, message: "No such fighter found !", status: 404 };
                 next();                
             }
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(fighter, req.body);
             if (errText != "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();

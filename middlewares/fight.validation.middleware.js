@@ -1,22 +1,24 @@
 const { fight } = require('../models/fight');
-const { FightRepository } = require('../repositories/fightRepository');
+const { testFieldsList } = require('./helper/fieldListHelper');
+const { UserRepository } = require('../repositories/userRepository');
+const { FighterRepository } = require('../repositories/fighterRepository');
 
-function testFieldsList(reqList) {
+const testUserValid = (userId) => {
     let errText = "";
-    let fieldsUser = Object.keys(fight);
-    let fieldsBody = Object.keys(reqList);
-    let errTextA = "";
-    for (let i=1; i < fieldsUser.length; i++)
-        if (fieldsBody.indexOf(fieldsUser[i]) < 0) errTextA += fieldsUser[i]+" ";
-    if (errTextA != "") errText = "No fields in request : "+errTextA+"\n";
-    errTextA = "";
-    let errTextB = "";
-    for (let i=0; i < fieldsBody.length; i++) {
-        if (fieldsUser.indexOf(fieldsBody[i]) < 0) errTextA += fieldsBody[i]+" ";
-        if (reqList[fieldsBody[i]] == "") errTextB += "\n --- "+ fieldsBody[i];
+    let user = UserRepository.getOne((item)=>{ return (item.id === userId) });
+    if (!user) errText += "Gamer not found ... ";
+    return errText;
+}
+
+const testFightersValid = (fighter1, fighter2) => {
+    let errText = "";
+    let fighter = FighterRepository.getOne((item)=>{ return (item.id === fighter1) });
+    if (!fighter) errText += "First fighter not found";
+    fighter = FighterRepository.getOne((item)=>{ return (item.id === fighter2) });
+    if (!fighter) {
+        if (errText != "") errText += "\n";
+        errText += "Second fighter not found";
     }
-    if (errTextA != "") errText += "Extra fields in request : "+errTextA+"\n";
-    if (errTextB != "") errText += "Empty fields in request : "+errTextB+"\n";
     return errText;
 }
 
@@ -24,9 +26,19 @@ const createFightValid = (req, res, next) => {
     // TODO: Implement validatior for fighter entity during creation
     try {
         if (req.body) {
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(fight, req.body);
             if (errText != "") {
                 res.data = { error: true, message:errText, status:400 };
+                next();
+            }
+            errText= testUserValid(req.body.log[0]);
+            if (errText != "") {
+                res.data = { error: true, message:errText, status:404 };
+                next();
+            }
+            errText = testFightersValid(req.body.fighter1, req.body.fighter2);
+            if (errText != "") {
+                res.data = { error: true, message:errText, status:404 };
                 next();
             }
             res.data = { error: false, data: "", status: 200 };
@@ -43,9 +55,19 @@ const updateFightValid = (req, res, next) => {
     try {
         let id = req.params.id;
         if (req.body) {
-            let errText= testFieldsList(req.body);
+            let errText= testFieldsList(fight, req.body);
             if (errText != "") {
                 res.data = { error: true, message:errText, status:400 };
+                next();
+            }
+            errText= testUserValid(req.body.log[0]);
+            if (errText != "") {
+                res.data = { error: true, message:errText, status:404 };
+                next();
+            }
+            errText= testFightersValid(req.body.fighter1, req.body.fighter2);
+            if (errText != "") {
+                res.data = { error: true, message:errText, status:404 };
                 next();
             }
             res.data = { error: false, data: id, status: 200 };

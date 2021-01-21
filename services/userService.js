@@ -15,7 +15,7 @@ class UserService {
     get(req, res, next) {
         try {
             let users = UserRepository.getAll();
-            res.data = { error:false, data: users, status: 200 };
+            res.data = users;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -27,8 +27,8 @@ class UserService {
         try {
             let id = req.params.id;
             let user = UserRepository.getOne((item)=>{ return (item.id == id) });
-            if (user) res.data = { error: false, data: user, status:200 }
-            else res.data = { error:true, message: "No such user ...", status: 400 };
+            if (user) res.data = user
+            else res.data = { error:true, message: "No such user ...", status: 404 };
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -41,11 +41,11 @@ class UserService {
             let id = req.params.id;
             let user = UserRepository.getOne((item)=>{ return (item.id == id) });
             if (!user) {
-                res.data = { error: true, message: "No such user found !", status: 400 };
+                res.data = { error: true, message: "No such user found !", status: 404 };
                 next();                
             }
             user = UserRepository.delete(id);
-            res.data = { error: false, data: user, status:200 };
+            res.data = user;
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -57,7 +57,7 @@ class UserService {
         try {
             if (!res.data.error) {
                 let newUser = UserRepository.create(req.body);
-                res.data.data = newUser;
+                res.data = newUser;
             }    
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
@@ -71,7 +71,7 @@ class UserService {
             if (!res.data.error) {
                 let id = res.data.data;
                 let updUser = UserRepository.update(id, req.body);
-                res.data.data = updUser;
+                res.data = updUser;
             }    
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };

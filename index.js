@@ -5,7 +5,7 @@ require('./config/db');
 const { UserRepository } = require('./repositories/userRepository');
 
 const app = express();
-let entry = false;
+let entry = true; // false;
 
 app.use(cors());
 app.use(express.json());
@@ -14,23 +14,20 @@ app.use(express.urlencoded({ extended: true }));
 const routes = require('./routes/index');
 routes(app);
 
-const staticPath = path.resolve(`${__dirname}/../clientWork/build`);
-// const staticPath = path.resolve(`${__dirname}/clientWork/build`);
+const staticPath = path.resolve(`${__dirname}/../client/build`);
 app.use(express.static(staticPath));
 
-app.get("/clientWork/buttle/*", function(req, res){
+app.get("/client/buttle/*", function(req, res){
     if (entry) {
         const filePath = path.resolve(`${__dirname}/../${req.url}`);
-        // const filePath = path.resolve(`${__dirname}/${req.url}`);
         res.sendFile(filePath);
     } else res.sendStatus(403);
 });
 
-app.get("/clientWork/pages/*", function(req, res){
+app.get("/client/pages/*", function(req, res){
     let params = req.params["0"].split(":");
     if ((entry)||(controlUser(req.query))) {
-        res.sendFile(path.resolve(path.resolve(`${__dirname}/../clientWork/pages/${params[0]}`)))
-        // res.sendFile(path.resolve(path.resolve(`${__dirname}/clientWork/pages/${params[0]}`)))
+        res.sendFile(path.resolve(path.resolve(`${__dirname}/../client/pages/${params[0]}`)))
     } else res.sendStatus(403);
 });
 

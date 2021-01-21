@@ -13,13 +13,9 @@ router.get('/:id', FightService.getId, responseMiddleware);
 
 router.delete("/:id", FightService.delete, responseMiddleware);
 
-router.use('/', createFightValid);
+router.post('/', createFightValid, FightService.post, responseMiddleware);
 
-router.post('/', FightService.post, responseMiddleware);
-
-router.use('/:id', updateFightValid);
-
-router.put("/:id", FightService.put, responseMiddleware);
+router.put("/:id", updateFightValid, FightService.put, responseMiddleware);
 
 
 module.exports = router;

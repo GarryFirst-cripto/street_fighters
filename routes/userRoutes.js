@@ -13,12 +13,8 @@ router.get('/:id', UserService.getId, responseMiddleware);
 
 router.delete("/:id", UserService.delete, responseMiddleware);
 
-router.use('/', createUserValid);
+router.post('/', createUserValid, UserService.post, responseMiddleware);
 
-router.post('/', UserService.post, responseMiddleware);
-
-router.use('/:id', updateUserValid);
-
-router.put("/:id", UserService.put, responseMiddleware);
+router.put("/:id",  updateUserValid, UserService.put, responseMiddleware);
 
 module.exports = router;

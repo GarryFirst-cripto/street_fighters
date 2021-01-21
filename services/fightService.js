@@ -6,7 +6,7 @@ class FightersService {
     get(req, res, next) {
         try {
             let fights = FightRepository.getAll();
-            res.data = { error:false, data: fights, status: 200 };
+            res.data = fights;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -18,8 +18,8 @@ class FightersService {
         try {
             let id = req.params.id;
             let fight = FightRepository.getOne((item)=>{ return (item.id == id) });
-            if (fight) res.data = { error: false, data: fight, status:200 }
-            else res.data = { error:true, message: "No such fight ...", status: 400 };
+            if (fight) res.data = fight
+            else res.data = { error:true, message: "No such fight ...", status: 404 };
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -29,9 +29,14 @@ class FightersService {
 
     delete(req, res, next) {
         try {
-            let id = res.data.userid;
-            let fight = FightRepository.delete(id);
-            res.data = { error: false, data: fight, status:200 };
+            let id = req.params.id;
+            let fight = FightRepository.getOne((item)=>{ return (item.id == id) });
+            if (!fight) {
+                res.data = { error: true, message: "No such fight ...", status: 404 };
+                next();                
+            } 
+            fight = FightRepository.delete(id);
+            res.data = fight;
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
         } finally {
@@ -43,7 +48,7 @@ class FightersService {
         try {
             if (!res.data.error) {
                 let newFight = FightRepository.create(req.body);
-                res.data.data = newFight;
+                res.data = newFight;
             }    
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
@@ -57,7 +62,7 @@ class FightersService {
             if (!res.data.error) {
                 let id = req.params.id;
                 let updFight = FightRepository.update(id, req.body);
-                res.data.data = updFight;
+                res.data = updFight;
             }    
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
