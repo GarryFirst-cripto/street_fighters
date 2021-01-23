@@ -14,7 +14,7 @@ class UserService {
 
     get(req, res, next) {
         try {
-            let users = UserRepository.getAll();
+            const users = UserRepository.getAll();
             res.data = users;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
@@ -25,8 +25,8 @@ class UserService {
 
     getId(req, res, next) {
         try {
-            let id = req.params.id;
-            let user = UserRepository.getOne((item)=>{ return (item.id == id) });
+            const id = req.params.id;
+            const user = UserRepository.getOne((item)=>{ return (item.id === id) });
             if (user) res.data = user
             else res.data = { error:true, message: "No such user ...", status: 404 };
         }  catch (err) {
@@ -38,8 +38,8 @@ class UserService {
 
     delete (req, res, next) {
         try {
-            let id = req.params.id;
-            let user = UserRepository.getOne((item)=>{ return (item.id == id) });
+            const id = req.params.id;
+            let user = UserRepository.getOne((item)=>{ return (item.id === id) });
             if (!user) {
                 res.data = { error: true, message: "No such user found !", status: 404 };
                 next();                
@@ -56,7 +56,7 @@ class UserService {
     post(req, res, next) {
         try {
             if (!res.data.error) {
-                let newUser = UserRepository.create(req.body);
+                const newUser = UserRepository.create(req.body);
                 res.data = newUser;
             }    
         } catch (err) {
@@ -69,8 +69,8 @@ class UserService {
     put(req, res, next) {
         try {
             if (!res.data.error) {
-                let id = res.data.data;
-                let updUser = UserRepository.update(id, req.body);
+                const id = res.data.data;
+                const updUser = UserRepository.update(id, req.body);
                 res.data = updUser;
             }    
         } catch (err) {

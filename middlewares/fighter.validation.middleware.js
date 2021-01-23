@@ -23,9 +23,9 @@ function testNumberValue(value,minn,maxx,nm) {
             default:
                 errSimb = value.charAt(i);
         }
-        if (errSimb != "") break;
+        if (errSimb !== "") break;
     }
-    if (errSimb != "") errText = '\n incorrect simbol "'+errSimb+'" in '+nm
+    if (errSimb !== "") errText = '\n incorrect simbol "'+errSimb+'" in '+nm
     else {
         value = Number.parseInt(value);
         if (value > maxx) errText = nm+"\n is too large (mast be in "+minn+" ... "+maxx+")"
@@ -40,18 +40,18 @@ const createFighterValid = (req, res, next) => {
     try {
         if (req.body) {
             let errText= testFieldsList(fighter, req.body);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();
             }
-            let newFighter = FighterRepository.getOne((item)=>{ return (item.name == req.body.name) });
+            const newFighter = FighterRepository.getOne((item)=>{ return (item.name === req.body.name) });
             if (newFighter) errText = "\n this fighter is already registered : "+req.body.name
             else {
                 errText = testNumberValue(req.body.health,10,100,"health");
                 errText += testNumberValue(req.body.power,1,10,"power");
                 errText += testNumberValue(req.body.defense,1,10,"defense");
             }
-            if (errText == "") res.data = { error: false, data: "", status: 200 };
+            if (errText === "") res.data = { error: false, data: "", status: 200 };
             else res.data = { error: true, message: errText, status: 400 };
         } else res.data = { error: true,  message: 'No data in request !', status: 404 };
         next();
@@ -65,21 +65,21 @@ const updateFighterValid = (req, res, next) => {
     // TODO: Implement validatior for fighter entity during update
     try {
         if (req.body) {
-            let id = req.params.id;
-            let updFighter = FighterRepository.getOne((item)=>{ return (item.id == id) });
+            const id = req.params.id;
+            const updFighter = FighterRepository.getOne((item)=>{ return (item.id == id) });
             if (!updFighter) {
                 res.data = { error: true, message: "No such fighter found !", status: 404 };
                 next();                
             }
             let errText= testFieldsList(fighter, req.body);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();
             }
             errText = testNumberValue(req.body.health,10,100,"health");
             errText += testNumberValue(req.body.power,1,10,"power");
             errText += testNumberValue(req.body.defense,1,10,"defense");
-            if (errText == "") res.data = { error: false, data: id, status: 200 };
+            if (errText === "") res.data = { error: false, data: id, status: 200 };
             else res.data = { error: true, message: errText, status: 400 };
         } else 
             res.data = { error: true,  message: 'No data in request !', status: 404 };

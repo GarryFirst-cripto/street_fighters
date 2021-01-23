@@ -5,7 +5,7 @@ const { FighterRepository } = require('../repositories/fighterRepository');
 
 const testUserValid = (userId) => {
     let errText = "";
-    let user = UserRepository.getOne((item)=>{ return (item.id === userId) });
+    const user = UserRepository.getOne((item)=>{ return (item.id === userId) });
     if (!user) errText += "Gamer not found ... ";
     return errText;
 }
@@ -16,7 +16,7 @@ const testFightersValid = (fighter1, fighter2) => {
     if (!fighter) errText += "First fighter not found";
     fighter = FighterRepository.getOne((item)=>{ return (item.id === fighter2) });
     if (!fighter) {
-        if (errText != "") errText += "\n";
+        if (errText !== "") errText += "\n";
         errText += "Second fighter not found";
     }
     return errText;
@@ -27,17 +27,17 @@ const createFightValid = (req, res, next) => {
     try {
         if (req.body) {
             let errText= testFieldsList(fight, req.body);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();
             }
             errText= testUserValid(req.body.log[0]);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:404 };
                 next();
             }
             errText = testFightersValid(req.body.fighter1, req.body.fighter2);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:404 };
                 next();
             }
@@ -56,17 +56,17 @@ const updateFightValid = (req, res, next) => {
         let id = req.params.id;
         if (req.body) {
             let errText= testFieldsList(fight, req.body);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:400 };
                 next();
             }
             errText= testUserValid(req.body.log[0]);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:404 };
                 next();
             }
             errText= testFightersValid(req.body.fighter1, req.body.fighter2);
-            if (errText != "") {
+            if (errText !== "") {
                 res.data = { error: true, message:errText, status:404 };
                 next();
             }

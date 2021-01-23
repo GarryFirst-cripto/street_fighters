@@ -25,7 +25,7 @@ app.get("/client/buttle/*", function(req, res){
 });
 
 app.get("/client/pages/*", function(req, res){
-    let params = req.params["0"].split(":");
+    const params = req.params["0"].split(":");
     if ((entry)||(controlUser(req.query))) {
         res.sendFile(path.resolve(path.resolve(`${__dirname}/../client/pages/${params[0]}`)))
     } else res.sendStatus(403);
@@ -33,7 +33,7 @@ app.get("/client/pages/*", function(req, res){
 
 function controlUser(query) {
     if (query.id) {
-        let user = UserRepository.getOne((item)=>{ return (item.id == query.id) });
+        const user = UserRepository.getOne((item)=>{ return (item.id === query.id) });
         entry = (user);
     }
     return entry;

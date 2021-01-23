@@ -5,7 +5,7 @@ class DetailService {
 
     get(req, res, next) {
         try {
-            let details = DetailRepository.getAll();
+            const details = DetailRepository.getAll();
             res.data = details;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
@@ -16,8 +16,8 @@ class DetailService {
 
     getId(req, res, next) {
         try {
-            let idd = req.params.id;
-            let detail = DetailRepository.getOne((item)=>{ return (item.id == idd) });
+            const idd = req.params.id;
+            const detail = DetailRepository.getOne((item)=>{ return (item.id === idd) });
             if (detail) res.data = detail
             else res.data = { error:false, data:{ id:idd, source:"" }, status: 200 };
         }  catch (err) {
@@ -29,8 +29,8 @@ class DetailService {
 
     delete(req, res, next) {
         try {
-            let id = req.params.id;
-            let detail = DetailRepository.delete(id);
+            const id = req.params.id;
+            const detail = DetailRepository.delete(id);
             res.data = detail;
         }  catch (err) {
             res.data = { error: true, message: err, status: 404 };  
@@ -41,7 +41,7 @@ class DetailService {
 
     post(req, res, next) {
         try {
-            let newDetail = DetailRepository.create(req.body);
+            const newDetail = DetailRepository.create(req.body);
             res.data = newDetail;
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };
@@ -52,8 +52,8 @@ class DetailService {
 
     put(req, res, next) {
         try {
-            let idd = req.params.id;
-            let updDetail = DetailRepository.update(idd, req.body);
+            const idd = req.params.id;
+            const updDetail = DetailRepository.update(idd, req.body);
             res.data = updDetail;
         } catch (err) {
             res.data = { error: true, message: "Error while processing ...", status: 404 };

@@ -5,7 +5,7 @@ class FightersService {
 
     get(req, res, next) {
         try {
-            let fights = FightRepository.getAll();
+            const fights = FightRepository.getAll();
             res.data = fights;
         } catch (err) {
             res.data = { error: true, message: err, status: 404 };  
@@ -16,8 +16,8 @@ class FightersService {
 
     getId(req, res, next) {
         try {
-            let id = req.params.id;
-            let fight = FightRepository.getOne((item)=>{ return (item.id == id) });
+            const id = req.params.id;
+            const fight = FightRepository.getOne((item)=>{ return (item.id === id) });
             if (fight) res.data = fight
             else res.data = { error:true, message: "No such fight ...", status: 404 };
         }  catch (err) {
@@ -29,8 +29,8 @@ class FightersService {
 
     delete(req, res, next) {
         try {
-            let id = req.params.id;
-            let fight = FightRepository.getOne((item)=>{ return (item.id == id) });
+            const id = req.params.id;
+            let fight = FightRepository.getOne((item)=>{ return (item.id === id) });
             if (!fight) {
                 res.data = { error: true, message: "No such fight ...", status: 404 };
                 next();                
@@ -47,7 +47,7 @@ class FightersService {
     post(req, res, next) {
         try {
             if (!res.data.error) {
-                let newFight = FightRepository.create(req.body);
+                const newFight = FightRepository.create(req.body);
                 res.data = newFight;
             }    
         } catch (err) {
@@ -60,8 +60,8 @@ class FightersService {
     put(req, res, next) {
         try {
             if (!res.data.error) {
-                let id = req.params.id;
-                let updFight = FightRepository.update(id, req.body);
+                const id = req.params.id;
+                const updFight = FightRepository.update(id, req.body);
                 res.data = updFight;
             }    
         } catch (err) {

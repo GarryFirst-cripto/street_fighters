@@ -7,8 +7,8 @@ const router = Router();
 
 router.post('/login', (req, res, next) => {
     try {
-        let user = UserRepository.getOne((item)=>{ return (item.email == req.body.email) });      
-        if ((user)&&(user.password == req.body.password)) {
+        const user = UserRepository.getOne((item)=>{ return (item.email === req.body.email) });      
+        if ((user)&&(user.password === req.body.password)) {
             res.data = user;
         } else {
             res.data = {

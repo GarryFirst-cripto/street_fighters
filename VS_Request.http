@@ -19,19 +19,19 @@ content-type: application/json
 }
 
 ### PUT Request
-PUT http://localhost:3050/api/users/0aa5bbc4-1a9a-428f-a989-2e434605603c
+PUT http://localhost:3050/api/users/de5f9a70-3403-4dd9-b359-b6f872c3ce62
 content-type: application/json
 
 {
-    "firstName": "New User",
-    "lastName": "New New User",
-    "email": "newUser@mail.mail",
+    "firstName": "John",
+    "lastName": "Doe",
+    "email": "john_doe@mail.mail",
     "phoneNumber": "+38(066)0000000",
     "password": "333333"
 }
 
 ### DELETE Request
-DELETE http://localhost:3050/api/users/f4dde2ef-d36c-405b-8edf-87ad4197e6cb
+DELETE http://localhost:3050/api/users/d5b56aae-6aad-4f2d-87c4-9f0799f747d5
 
 
 
@@ -84,13 +84,13 @@ content-type: application/json
 
 {
     "fighter1": "e251daf6-9954-4938-8111-6c35fceb9240",
-    "fighter2": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
+    "fighter2": "6bd98c72-26a1-4aea-8fcc-28c6705d7bb2",
     "log": [
-      "1def3850-9f60-46db-acbe-a4ec96869cf3",
-      "2021-01-16T16:49:33.348Z",
-      27,
-      23,
-      18,
+      "a64ff31a-dd7c-4e23-9fdc-ea11c7dd6a13",
+      "2021-01-10T16:49:33.348Z",
+      31,
+      25,
+      15,
       -1
     ]
 }
