@@ -6,7 +6,7 @@ class ControlsService {
   async get(req, res, next) {
     try {
       const data = await ControlsRepository.getOne();
-      res.data = { error: false, data, status: 200 };
+      res.data = data;
     } catch (err) {
       res.data = { error: true, message: err, status: 404 };
     } finally {

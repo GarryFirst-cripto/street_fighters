@@ -296,9 +296,7 @@
     {
       "id": "a3c5a4ba-3924-4c75-b42f-e4b9c99097de",
       "source": "https://i.gifer.com/ZeQb.gif",
-      "createdAt": "2020-05-16T16:48:54.487Z",
-      "name": "Bossom",
-      "updatedAt": "2020-11-12T15:39:06.320Z"
+      "createdAt": "2020-05-16T16:48:54.487Z"
     },
     {
       "id": "c8ee77ed-55a1-4929-b666-fae8e961e22e",
@@ -306,23 +304,5 @@
       "createdAt": "2020-05-16T17:17:25.814Z"
     }
   ],
-  "controls": [
-    {
-      "PlayerOneAttack": "KeyA",
-      "PlayerOneBlock": "KeyS",
-      "PlayerTwoAttack": "KeyJ",
-      "PlayerTwoBlock": "KeyK",
-      "PlayerOneCriticalHitCombination": [
-        "KeyQ",
-        "KeyW"
-      ],
-      "PlayerTwoCriticalHitCombination": [
-        "KeyU",
-        "KeyI"
-      ],
-      "id": "01555663-de81-44f5-abee-bdcd49002d8f",
-      "createdAt": "2020-11-14T17:41:20.497Z",
-      "updatedAt": "2020-11-14T18:21:25.841Z"
-    }
-  ]
+  "controls": []
 }

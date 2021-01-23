@@ -197,7 +197,7 @@
                             let req = new XMLHttpRequest();
                             if (curId == newFighterId) req.open("POST", "/api/details/", true)
                             else req.open("PUT", "/api/details/"+curId, true);   
-                            let details = JSON.stringify({ name:recData.name, source: userForm.elements["image"].value });
+                            let details = JSON.stringify({ source: userForm.elements["image"].value });
                             req.setRequestHeader("Content-Type", "application/json");
                             req.send(details);
                             canselEdit();

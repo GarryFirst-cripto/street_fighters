@@ -11,9 +11,9 @@ POST http://localhost:3050/api/users
 content-type: application/json
 
 {
-    "firstName": "New User",
+    "firstName": "New User User",
     "lastName": "New New",
-    "email": "jhoy@mail.mail",
+    "email": "jhoy11@mail.mail",
     "phoneNumber": "066 000-00-00",
     "password": "333333"
 }
@@ -31,7 +31,7 @@ content-type: application/json
 }
 
 ### DELETE Request
-DELETE http://localhost:3050/api/users/d5b56aae-6aad-4f2d-87c4-9f0799f747d5
+DELETE http://localhost:3050/api/users/de5f9a70-3403-4dd9-b359-b6f872c3ce62
 
 
 
@@ -75,7 +75,7 @@ GET http://localhost:3050/api/fights
 content-type: application/json
 
 ### GET Request
-GET http://localhost:3050/api/fights/896c5a13-6037-435b-b96e-66dd8c1712de
+GET http://localhost:3050/api/fights/49f3df6f-172e-467a-bf25-a16c104219fd
 content-type: application/json
 
 ### POST Request
@@ -96,14 +96,14 @@ content-type: application/json
 }
 
 ### PUT Request
-PUT http://localhost:3050/api/fights/896c5a13-6037-435b-b96e-66dd8c1712de
+PUT http://localhost:3050/api/fights/49f3df6f-172e-467a-bf25-a16c104219fd
 content-type: application/json
 
 {
     "fighter1": "3aab1a88-8104-40a9-81ea-aa102dfbf068",
     "fighter2": "e251daf6-9954-4938-8111-6c35fceb9240",
     "log": [
-      "1def3850-9f60-46db-acbe-a4ec96869cf3",
+      "0aa5bbc4-1a9a-428f-a989-2e434605603c",
       "2021-01-11T16:49:33.348Z",
       27,
       23,
